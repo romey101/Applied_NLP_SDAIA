@@ -32,12 +32,6 @@
 **صور النظام**
 <br></br>
 <div align="center">
-<img src="docs/1.png" alt="معمارية نظام صوت" width="100%" />
-</div>
-<div align="center">
-<img src="docs/2.png" alt="معمارية نظام صوت" width="100%" />
-</div>
-<div align="center">
 <img src="docs/3.png" alt="معمارية نظام صوت" width="100%" />
 </div>
 <div align="center">
