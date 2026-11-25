@@ -1,11 +1,11 @@
 
 <div align="center">
 
-<img src="docs/banner.svg" alt="Sawt — A universe of voices" width="100%" />
+<img src="docs/banner.svg" alt="صوت — لكل صوت حكاية" width="100%" />
 
-# Sawt | صوت
+# صوت | Sawt
 
-**A bilingual NLP workspace for understanding customer feedback.**
+**منصة ذكية ثنائية اللغة لتحليل وفهم آراء العملاء باستخدام تقنيات معالجة اللغة الطبيعية.**
 
 ![Python](https://img.shields.io/badge/Python-3.12-542438?style=flat-square)
 ![React](https://img.shields.io/badge/React-TypeScript-ECA58C?style=flat-square)
@@ -13,137 +13,180 @@
 ![NLP](https://img.shields.io/badge/AI-Applied%20NLP-C3A16D?style=flat-square)
 ![Ollama](https://img.shields.io/badge/LLM-Local%20Inference-8C9AAE?style=flat-square)
 
-[Overview](#overview) · [Architecture](#architecture) · [AI Pipeline](#ai-pipeline) · [Run Locally](#run-locally) · [Limitations](#limitations)
+[نظرة عامة](#نظرة-عامة) · [معمارية النظام](#معمارية-النظام) · [معالجة اللغة الطبيعية](#معالجة-اللغة-الطبيعية) · [تشغيل المشروع](#تشغيل-المشروع-محليًا) · [القيود](#القيود)
 
 </div>
 
 ---
 
-## Overview
+## نظرة عامة
 
-Sawt transforms customer reviews into searchable, interpretable insights. Explore sentiment, discover semantic topics, inspect named entities, and ask questions grounded in actual review evidence.
+<div dir="rtl">
 
-The application supports Arabic and English, with a local-first inference workflow that combines traditional machine learning, multilingual transformers, semantic retrieval, and generative AI.
+**صوت** هي منصة ذكية تهدف إلى تحويل مراجعات العملاء وآرائهم غير المنظمة إلى معلومات قابلة للبحث والتحليل والاستكشاف، بما يساعد على فهم تجارب العملاء واكتشاف الأنماط والموضوعات المتكررة في آرائهم.
 
-| Workspace | Purpose |
+تدعم المنصة اللغتين العربية والإنجليزية، وتجمع بين تقنيات تعلم الآلة، والتعلم العميق، ومعالجة اللغة الطبيعية، والبحث الدلالي، والذكاء الاصطناعي التوليدي.
+
+تعتمد المنصة على التشغيل المحلي للنماذج، مما يقلل الحاجة إلى إرسال بيانات العملاء إلى خدمات الذكاء الاصطناعي الخارجية.
+
+### خصائص المنصة
+
+| الخاصية | الوصف |
 |---|---|
-| Semantic Universe | Interactive PCA projection of review embeddings, grouped by topic |
-| Explore | Review browsing, filtering, semantic retrieval, and sentiment inference |
-| Ask Sawt | Retrieval-augmented answers with supporting review IDs |
-| AI Labs | Evaluation and experiment outputs from the NLP pipeline |
-| Settings | Artifact availability and system health |
+| عالم الأصوات — Semantic Universe | تمثيل بصري تفاعلي للمراجعات بناءً على التشابه الدلالي والموضوعات المكتشفة |
+| الاستكشاف — Explore | تصفح المراجعات وتصفيتها والبحث الدلالي وتحليل المشاعر |
+| اسأل صوت — Ask Sawt | طرح الأسئلة والحصول على إجابات مستندة إلى مراجعات فعلية |
+| مختبرات الذكاء الاصطناعي — AI Labs | استعراض نتائج التجارب ومؤشرات تقييم النماذج |
+| الإعدادات — Settings | التحقق من توفر النماذج والملفات وحالة النظام |
+
+</div>
 
 ---
 
-## Architecture
+## معمارية النظام
 
 <div align="center">
-<img src="docs/architecture.svg" alt="Sawt System Architecture" width="100%" />
+<img src="docs/architecture.svg" alt="معمارية نظام صوت" width="100%" />
 </div>
 
-The offline notebooks prepare data and export artifacts. FastAPI serves those artifacts and runs inference, while React, TypeScript, and Vite provide the interactive interface.
+<div dir="rtl">
 
-Ollama runs the local generative model. The application does not require retraining at startup when the necessary artifacts are available.
+تعتمد معمارية صوت على فصل مرحلة معالجة البيانات وتدريب النماذج عن مرحلة تشغيل التطبيق والاستدلال.
 
-| Layer | Technology |
+تتولى دفاتر Jupyter معالجة البيانات وتدريب النماذج وتقييمها وتصدير المخرجات، بينما تتولى الواجهة الخلفية تحميل هذه المخرجات وتنفيذ عمليات الاستدلال والبحث.
+
+تتيح الواجهة الأمامية للمستخدم استكشاف البيانات والتفاعل مع نتائج التحليل، ويُستخدم Ollama لتشغيل نموذج اللغة الكبير محليًا.
+
+لا يتطلب تشغيل التطبيق إعادة تدريب النماذج عند توفر الملفات والمخرجات المحفوظة.
+
+### التقنيات المستخدمة
+
+| الطبقة | التقنيات |
 |---|---|
-| Frontend | React, TypeScript, Vite |
-| Visualization | D3.js, Recharts |
-| Backend | Python, FastAPI |
-| Machine Learning | Scikit-learn |
-| Deep Learning | PyTorch, Hugging Face Transformers |
-| Semantic Retrieval | Sentence Transformers, FAISS |
-| Generative AI | Ollama |
-| Data Processing | Pandas, NumPy |
+| الواجهة الأمامية | React, TypeScript, Vite |
+| التصور البصري | D3.js, Recharts |
+| الواجهة الخلفية | Python, FastAPI |
+| تعلم الآلة | Scikit-learn |
+| التعلم العميق | PyTorch, Hugging Face Transformers |
+| البحث الدلالي | Sentence Transformers, FAISS |
+| الذكاء الاصطناعي التوليدي | Ollama |
+| معالجة البيانات | Pandas, NumPy |
+| التجارب وتقييم النماذج | Jupyter Notebook |
+
+</div>
 
 ---
 
-## AI Pipeline
+## معالجة اللغة الطبيعية
 
 <div align="center">
-<img src="docs/nlp.svg" alt="Sawt NLP Pipeline" width="100%" />
+<img src="docs/nlp.svg" alt="مراحل معالجة اللغة الطبيعية في صوت" width="100%" />
 </div>
 
-### Notebook Structure
+<div dir="rtl">
 
-The project is organized into two main notebooks, covering the end-to-end workflow from raw customer reviews to evidence-grounded AI responses.
+### هيكلة دفاتر المشروع
 
-#### Notebook 01 — Preprocessing and NLP Pipeline
+يتكون المشروع من دفترين رئيسيين من نوع Jupyter Notebook، يغطيان مراحل العمل بدءًا من معالجة البيانات الخام، وصولًا إلى توليد إجابات مستندة إلى الأدلة.
 
-This notebook prepares the dataset, develops the NLP components, evaluates their performance, and exports the artifacts required by the application.
+### الدفتر الأول: معالجة البيانات وتطوير نماذج اللغة الطبيعية
 
-| Stage | Description |
+**Preprocessing & NLP Pipeline**
+
+يتولى هذا الدفتر تجهيز البيانات، وتطوير مكونات معالجة اللغة الطبيعية، وتقييم أداء النماذج، وحفظ المخرجات اللازمة لتشغيل التطبيق.
+
+| المرحلة | الوصف |
 |---|---|
-| Exploratory Data Analysis | Analyze dataset characteristics, sentiment distribution, and review lengths |
-| Data Cleaning | Remove invalid records, duplicates, and inconsistent entries |
-| Arabic Normalization | Normalize Arabic characters, whitespace, and diacritics |
-| PII Masking | Mask identifiable patterns such as email addresses and phone numbers |
-| Multilingual Tokenization | Analyze tokenization behavior across Arabic and English |
-| Sentiment Classification | Train and evaluate traditional ML and transformer-based classifiers |
-| Named Entity Recognition | Extract named entities from customer reviews |
-| Language and Script Analysis | Examine multilingual and mixed-script content |
-| Semantic Embeddings | Generate multilingual review representations |
-| Topic Discovery | Apply K-means clustering to discover semantic groups |
-| Dimensionality Reduction | Use PCA to visualize review embeddings |
-| Semantic Retrieval | Build a FAISS index for similarity-based search |
-| Reranking | Refine retrieved results using a multilingual cross-encoder |
-| Evaluation | Assess model performance and analyze limitations |
-| Artifact Export | Save processed data, trained models, embeddings, and evaluation results |
+| التحليل الاستكشافي للبيانات — EDA | دراسة خصائص البيانات وتوزيع المشاعر وأطوال المراجعات |
+| تنظيف البيانات | إزالة السجلات غير الصالحة والمكررة والمتعارضة |
+| تطبيع النصوص العربية | توحيد بعض أشكال الحروف العربية وإزالة التشكيل والتطويل وتنظيم المسافات |
+| إخفاء المعلومات الشخصية — PII Masking | إخفاء الأنماط القابلة للتعرف مثل البريد الإلكتروني وأرقام الهواتف |
+| تجزئة النصوص — Tokenization | تحليل آلية تجزئة النصوص العربية والإنجليزية |
+| تحليل المشاعر — Sentiment Analysis | تدريب وتقييم نماذج تعلم الآلة والنماذج المعتمدة على المحولات |
+| التعرف على الكيانات المسماة — NER | استخراج الكيانات مثل أسماء الأشخاص والمنظمات والمواقع |
+| تحليل اللغة والنصوص | دراسة خصائص النصوص متعددة اللغات والمختلطة |
+| التمثيل الدلالي — Embeddings | تحويل المراجعات إلى تمثيلات متجهية تعكس معانيها |
+| اكتشاف الموضوعات — Clustering | تجميع المراجعات المتشابهة دلاليًا باستخدام K-means |
+| تقليل الأبعاد — PCA | تمثيل المتجهات في فضاء ثنائي الأبعاد لأغراض التصور البصري |
+| البحث الدلالي — Semantic Search | بناء فهرس FAISS لاسترجاع المراجعات ذات الصلة |
+| إعادة ترتيب النتائج — Reranking | تحسين ترتيب نتائج البحث باستخدام نموذج Cross-Encoder |
+| التقييم وتحليل الأخطاء | تقييم أداء النماذج ودراسة نقاط القوة والقيود |
+| حفظ المخرجات | تصدير البيانات المعالجة والنماذج والمتجهات ونتائج التقييم |
 
-#### Notebook 02 — Retrieval-Augmented Generation
+### الدفتر الثاني: التوليد المعزز بالاسترجاع
 
-This notebook builds on the artifacts generated by the NLP pipeline to support evidence-grounded question answering.
+**Retrieval-Augmented Generation — RAG**
 
-| Stage | Description |
+يعتمد هذا الدفتر على المخرجات المحفوظة من الدفتر الأول، بهدف تطوير آلية للإجابة عن أسئلة المستخدم بالاستناد إلى مراجعات العملاء الفعلية.
+
+| المرحلة | الوصف |
 |---|---|
-| Artifact Loading | Load processed reviews, embeddings, and the FAISS index |
-| Query Processing | Normalize and encode user questions |
-| Evidence Retrieval | Retrieve semantically relevant customer reviews |
-| Reranking | Refine candidate relevance |
-| Context Construction | Prepare retrieved evidence for the language model |
-| Answer Generation | Generate responses using a local LLM through Ollama |
-| Evidence Attribution | Associate answers with supporting review IDs |
-| Evaluation | Inspect retrieval relevance, grounding, and answer quality |
+| تحميل المخرجات | تحميل البيانات المعالجة والمتجهات وفهرس FAISS |
+| معالجة الاستعلام | تنظيف سؤال المستخدم وتحويله إلى تمثيل دلالي |
+| استرجاع الأدلة | استرجاع المراجعات الأكثر ارتباطًا بالسؤال |
+| إعادة ترتيب النتائج | تحسين ترتيب المراجعات المسترجعة وفقًا لمدى صلتها |
+| بناء السياق | تجهيز الأدلة المسترجعة وإرسالها إلى نموذج اللغة |
+| توليد الإجابة | استخدام نموذج لغة كبير يعمل محليًا عبر Ollama |
+| إسناد الإجابات إلى الأدلة | ربط الإجابات بمعرفات المراجعات الداعمة |
+| التقييم | دراسة مدى صلة الأدلة وجودة الإجابات وارتباطها بالمصادر |
 
-The notebooks are intended for experimentation and reproducibility. They are not required during normal application startup when the exported artifacts are available.
+تُستخدم هذه الدفاتر لأغراض التطوير والتجارب وإعادة إنتاج النتائج، ولا يلزم تشغيلها عند بدء استخدام التطبيق إذا كانت المخرجات المطلوبة متوفرة.
 
-### Model Inventory
+### النماذج والخوارزميات المستخدمة
 
-| Task | Model / Method |
+| المهمة | النموذج أو الخوارزمية |
 |---|---|
-| Sentiment baseline | Character TF-IDF + Logistic Regression |
-| Sentiment transformer | `distilbert-base-multilingual-cased`, fine-tuned |
-| Named entity recognition | `Davlan/xlm-roberta-base-ner-hrl` |
-| Semantic embeddings | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
-| Topic discovery | K-means clustering |
-| Visualization | Principal Component Analysis (PCA) |
-| Semantic retrieval | FAISS inner-product search over normalized embeddings |
-| Reranking | `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` |
-| Answer generation | `qwen2.5:3b` via Ollama |
+| النموذج الأساسي لتحليل المشاعر | Character TF-IDF + Logistic Regression |
+| نموذج المحولات لتحليل المشاعر | `distilbert-base-multilingual-cased` — Fine-tuned |
+| التعرف على الكيانات المسماة | `Davlan/xlm-roberta-base-ner-hrl` |
+| التمثيل الدلالي للنصوص | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
+| اكتشاف الموضوعات | K-means |
+| تقليل الأبعاد والتصور البصري | PCA |
+| البحث الدلالي | FAISS Inner Product Search |
+| إعادة ترتيب نتائج البحث | `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` |
+| توليد الإجابات | `qwen2.5:3b` عبر Ollama |
 
-Sentiment inference uses the model recorded in `models/selected_model.json`.
+يستخدم التطبيق نموذج تحليل المشاعر المحدد في الملف `models/selected_model.json`.
 
-Topic names are descriptive rather than supervised ground truth. The application reads available evaluation CSV files instead of hard-coding performance claims.
+تُعد أسماء الموضوعات المكتشفة أسماء وصفية للمجموعات الدلالية، وليست تصنيفات معتمدة مسبقًا.
+
+تُعرض مؤشرات الأداء من ملفات نتائج التقييم المحفوظة، دون الاعتماد على قيم ثابتة داخل الواجهة.
+
+</div>
 
 ---
 
-## Retrieval-Augmented Generation
+## التوليد المعزز بالاسترجاع
 
 <div align="center">
-<img src="docs/rag.svg" alt="Sawt RAG Pipeline" width="100%" />
+<img src="docs/rag.svg" alt="معمارية التوليد المعزز بالاسترجاع في صوت" width="100%" />
 </div>
 
-Sawt uses Retrieval-Augmented Generation (RAG) to answer questions using actual customer feedback rather than relying exclusively on the language model's internal knowledge.
+<div dir="rtl">
 
-The query is cleaned and embedded, FAISS retrieves relevant candidates, and optional reranking refines their relevance.
+تستخدم منصة صوت تقنية التوليد المعزز بالاسترجاع (RAG) للإجابة عن أسئلة المستخدم بالاستناد إلى مراجعات العملاء الفعلية، بدلًا من الاعتماد الكامل على المعرفة الداخلية لنموذج اللغة.
 
-Up to five retrieved reviews are passed to the local language model. Answers should cite supporting review IDs and acknowledge insufficient evidence.
+تمر عملية الإجابة بالمراحل التالية:
 
-Retrieved review text is treated as untrusted data.
+1. استقبال سؤال المستخدم.
+2. تنظيف السؤال ومعالجته.
+3. تحويل السؤال إلى تمثيل متجهي باستخدام نموذج التمثيل الدلالي.
+4. استرجاع المراجعات ذات الصلة باستخدام FAISS.
+5. إعادة ترتيب النتائج باستخدام Cross-Encoder عند تفعيل هذه الخاصية.
+6. اختيار ما يصل إلى خمس مراجعات ذات صلة.
+7. بناء السياق وإرساله إلى نموذج اللغة المحلي.
+8. توليد إجابة مستندة إلى الأدلة.
+9. عرض معرفات المراجعات الداعمة للإجابة.
+
+يُوجّه نموذج اللغة إلى الاعتماد على الأدلة المتاحة، والإشارة إلى عدم كفايتها عند الحاجة.
+
+تُعامل النصوص المسترجعة على أنها بيانات غير موثوقة، وليست تعليمات يجب على نموذج اللغة تنفيذها.
+
+</div>
 
 ---
 
-## Project Layout
+## هيكلة المشروع
 
 ```text
 Applied_NLP_SDAIA/
@@ -187,166 +230,227 @@ Applied_NLP_SDAIA/
 └── README.md
 ```
 
-The notebook names above describe their purpose. Additional evaluation exports, index-mapping files, and cached models may also be present.
+<div dir="rtl">
 
-Keep the matching index, embeddings, and review rows together.
+### وصف المجلدات
+
+| المجلد | المحتوى |
+|---|---|
+| `backend/` | الواجهة الخلفية وخدمات الاستدلال والبحث |
+| `frontend/` | الواجهة الأمامية ومكونات التصور البصري |
+| `notebooks/` | دفاتر معالجة البيانات وتطوير النماذج وRAG |
+| `data/processed/` | البيانات المعالجة والمتجهات والفهارس ونتائج التقييم |
+| `models/` | النماذج المدربة وإعدادات اختيار النموذج |
+| `docs/` | الرسومات التوضيحية والهوية البصرية للمشروع |
+
+أسماء الدفاتر الموضحة في الهيكلة وصفية. قد يحتوي المشروع أيضًا على ملفات إضافية لنتائج التقييم وربط المتجهات بالمراجعات.
+
+يجب الاحتفاظ بالمتجهات والفهارس والبيانات المرتبطة بها من نفس عملية المعالجة.
+
+</div>
 
 ---
 
-## Run Locally
+## تشغيل المشروع محليًا
 
-Follow the instructions below to download, configure, and run Sawt on your own machine.
+<div dir="rtl">
 
-No model retraining or notebook execution is required when the precomputed artifacts are available.
+توضح الخطوات التالية كيفية تحميل منصة صوت من GitHub وتجهيزها وتشغيلها على جهازك الشخصي.
 
-### 1. Prerequisites
+لا يتطلب تشغيل المنصة إعادة تدريب النماذج أو تشغيل دفاتر Jupyter عند توفر المخرجات والنماذج المحفوظة.
 
-Install the following tools before running the application.
+### 1. متطلبات التشغيل
 
-| Requirement | Recommended Version | Download |
+يجب تثبيت الأدوات التالية قبل البدء:
+
+| الأداة | الإصدار الموصى به | رابط التحميل |
 |---|---|---|
-| Python | 3.12 | [Python](https://www.python.org/downloads/) |
-| Node.js | 22 | [Node.js](https://nodejs.org/) |
-| Git | Latest stable | [Git](https://git-scm.com/downloads) |
-| Ollama | Latest stable | [Ollama](https://ollama.com/download) |
+| Python | 3.12 | [تحميل Python](https://www.python.org/downloads/) |
+| Node.js | 22 | [تحميل Node.js](https://nodejs.org/) |
+| Git | أحدث إصدار مستقر | [تحميل Git](https://git-scm.com/downloads) |
+| Ollama | أحدث إصدار مستقر | [تحميل Ollama](https://ollama.com/download) |
 
-**Recommended system configuration:**
+**مواصفات الجهاز الموصى بها:**
 
-- macOS or Linux
-- 16 GB RAM or more
-- Sufficient storage for pretrained models and processed artifacts
-- Internet connection during initial installation
+- نظام تشغيل macOS أو Linux.
+- ذاكرة عشوائية بسعة 16 GB أو أكثر.
+- مساحة تخزين كافية للنماذج والبيانات المعالجة.
+- اتصال بالإنترنت أثناء التثبيت الأولي.
 
-A dedicated GPU is not required. Local inference performance depends on available hardware.
+لا يشترط توفر بطاقة رسومية مستقلة، إلا أن سرعة الاستدلال تعتمد على إمكانيات الجهاز وحجم النماذج المستخدمة.
 
-### 2. Download the Project
+### 2. تحميل المشروع
 
-Clone the GitHub repository:
+يمكن تحميل المشروع باستخدام Git عبر تنفيذ الأوامر التالية:
+
+</div>
 
 ```bash
 git clone https://github.com/romey101/Applied_NLP_SDAIA.git
 cd Applied_NLP_SDAIA
 ```
 
-Alternatively, download the project directly:
+<div dir="rtl">
 
-[Download Sawt as ZIP](https://github.com/romey101/Applied_NLP_SDAIA/archive/refs/heads/main.zip)
+أو تحميل المشروع مباشرة بصيغة ZIP:
 
-Extract the ZIP file and open a terminal inside the extracted project directory.
+[تحميل مشروع صوت](https://github.com/romey101/Applied_NLP_SDAIA/archive/refs/heads/main.zip)
 
-### 3. Prepare the Data and Model Artifacts
+بعد التحميل، فك ضغط الملف وافتح Terminal داخل مجلد المشروع.
 
-Sawt uses precomputed NLP artifacts and trained models to avoid repeating expensive preprocessing and training operations.
+### 3. تجهيز البيانات والنماذج
 
-The application requires the complete matching contents of:
+تعتمد المنصة على مخرجات معالجة البيانات والنماذج المدربة مسبقًا لتجنب إعادة تنفيذ عمليات التدريب والمعالجة عند التشغيل.
+
+يجب توفر المجلدين التاليين بكامل محتوياتهما المطلوبة:
+
+</div>
 
 ```text
 data/processed/
 models/
 ```
 
-If these directories already contain the required artifacts, proceed to the next step.
+<div dir="rtl">
 
-Otherwise, check the repository's Releases page:
+إذا كانت الملفات متوفرة ضمن النسخة المحملة، يمكنك الانتقال إلى الخطوة التالية.
+
+في حال عدم توفرها، تحقق من صفحة إصدارات المشروع:
 
 [GitHub Releases](https://github.com/romey101/Applied_NLP_SDAIA/releases)
 
-If an artifact package is available, download it and extract its contents into the project root.
+إذا كانت حزمة المخرجات والنماذج متوفرة، حمّلها وفك ضغطها داخل المجلد الرئيسي للمشروع.
 
-If no artifact package is available, contact the repository maintainer to obtain the required files through an approved transfer method.
+في حال عدم توفر الحزمة، تواصل مع مطور المشروع للحصول على الملفات اللازمة بطريقة معتمدة وآمنة.
 
-The source code alone is not sufficient to run every feature of the application.
+> تحميل الكود المصدري وحده لا يكفي لتشغيل جميع خصائص المنصة دون توفر البيانات المعالجة والنماذج المطلوبة.
 
-Do not mix artifacts generated from different notebook executions. Only load serialized model files from trusted sources.
+يجب عدم خلط المخرجات الناتجة عن عمليات معالجة مختلفة، كما يجب تحميل ملفات النماذج المحفوظة من مصادر موثوقة فقط.
 
-### 4. Start Ollama
+### 4. تشغيل Ollama
 
-Open a terminal and start the Ollama service:
+افتح نافذة Terminal جديدة ونفّذ الأمر التالي:
+
+</div>
 
 ```bash
 ollama serve
 ```
 
-If Ollama is already running, continue to the next step.
+<div dir="rtl">
 
-Open another terminal and download the default language model:
+إذا كانت خدمة Ollama تعمل مسبقًا، يمكنك تجاوز هذه الخطوة.
+
+افتح نافذة Terminal أخرى وحمّل نموذج اللغة الافتراضي:
+
+</div>
 
 ```bash
 ollama pull qwen2.5:3b
 ```
 
-Verify that the model is available:
+<div dir="rtl">
+
+للتحقق من توفر النموذج:
+
+</div>
 
 ```bash
 ollama list
 ```
 
-### 5. Install Dependencies
+<div dir="rtl">
 
-Navigate to the project root and run:
+### 5. تثبيت مكتبات المشروع
+
+من داخل المجلد الرئيسي للمشروع، نفّذ:
+
+</div>
 
 ```bash
 bash setup.sh
 ```
 
-The setup script prepares the Python virtual environment and installs the required backend and frontend dependencies.
+<div dir="rtl">
 
-This step is only required during the initial installation or when project dependencies change.
+يتولى هذا الملف تجهيز البيئة الافتراضية الخاصة بـ Python وتثبيت مكتبات الواجهة الخلفية والأمامية.
 
-### 6. Launch Sawt
+تُنفذ هذه الخطوة عند التثبيت الأول فقط، أو عند تحديث مكتبات المشروع.
 
-From the project root, run:
+### 6. تشغيل المنصة
+
+من داخل المجلد الرئيسي للمشروع، نفّذ:
+
+</div>
 
 ```bash
 bash start.sh
 ```
 
-Once the services have started, open the application in your browser.
+<div dir="rtl">
 
-| Service | URL |
+بعد بدء تشغيل الخدمات، افتح المنصة من خلال المتصفح.
+
+| الخدمة | الرابط |
 |---|---|
-| Sawt Studio | [http://127.0.0.1:5173](http://127.0.0.1:5173) |
-| Backend API | [http://127.0.0.1:8000](http://127.0.0.1:8000) |
-| API Documentation | [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) |
-| System Health | [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health) |
+| منصة صوت | [فتح المنصة](http://127.0.0.1:5173) |
+| الواجهة الخلفية | [Backend API](http://127.0.0.1:8000) |
+| توثيق واجهات API | [Swagger Documentation](http://127.0.0.1:8000/docs) |
+| حالة النظام | [System Health](http://127.0.0.1:8000/api/health) |
 
-The first semantic search may require downloading pretrained Hugging Face models.
+قد تتطلب أول عملية بحث دلالي تحميل النماذج المدربة مسبقًا من Hugging Face.
 
-For offline operation, the required models must already be cached locally.
+لتشغيل المنصة دون اتصال بالإنترنت، يجب تحميل النماذج المطلوبة وتخزينها محليًا مسبقًا.
+
+</div>
 
 ---
 
-### Manual Startup
+## التشغيل اليدوي
 
-If the automated scripts are unavailable or fail, start the application using three separate terminals.
+<div dir="rtl">
 
-#### Terminal 1 — Ollama
+في حال عدم توفر ملفات التشغيل التلقائي أو حدوث مشكلة أثناء استخدامها، يمكن تشغيل مكونات المنصة يدويًا باستخدام ثلاث نوافذ Terminal منفصلة.
+
+### النافذة الأولى: تشغيل Ollama
+
+</div>
 
 ```bash
 ollama serve
 ```
 
-Skip this command if Ollama is already running.
+<div dir="rtl">
 
-#### Terminal 2 — Backend
+يمكن تجاوز هذه الخطوة إذا كانت الخدمة تعمل مسبقًا.
 
-Navigate to the project root.
+### النافذة الثانية: تشغيل الواجهة الخلفية
 
-Create and activate the Python virtual environment:
+انتقل إلى المجلد الرئيسي للمشروع، ثم أنشئ البيئة الافتراضية وفعّلها:
+
+</div>
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 ```
 
-Install backend dependencies:
+<div dir="rtl">
+
+ثبّت مكتبات الواجهة الخلفية:
+
+</div>
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -r backend/requirements.txt
 ```
 
-Configure the project environment:
+<div dir="rtl">
+
+اضبط متغيرات البيئة:
+
+</div>
 
 ```bash
 export SAWT_ROOT="$(pwd)"
@@ -358,7 +462,13 @@ export VECLIB_MAXIMUM_THREADS=1
 export TOKENIZERS_PARALLELISM=false
 ```
 
-Start the FastAPI server:
+<div dir="rtl">
+
+تُستخدم هذه الإعدادات لتقليل التزامن داخل المكتبات وتحسين استقرار عمليات الاستدلال، خصوصًا على أجهزة Apple Silicon.
+
+شغّل خادم FastAPI:
+
+</div>
 
 ```bash
 cd backend
@@ -370,11 +480,13 @@ python -X faulthandler -m uvicorn main:app \
     --log-level debug
 ```
 
-Thread limits are used to reduce native-library concurrency during local inference.
+<div dir="rtl">
 
-#### Terminal 3 — Frontend
+### النافذة الثالثة: تشغيل الواجهة الأمامية
 
-Navigate to the project root, then run:
+انتقل إلى المجلد الرئيسي للمشروع، ثم نفّذ:
+
+</div>
 
 ```bash
 cd frontend
@@ -382,66 +494,96 @@ npm install
 npm run dev
 ```
 
-Open:
+<div dir="rtl">
+
+افتح المنصة عبر الرابط التالي:
 
 [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
+</div>
+
 ---
 
-### Optional LLM Configuration
+## تغيير نموذج اللغة
 
-Sawt supports local language models through Ollama.
+<div dir="rtl">
 
-| Model | Ollama Identifier |
+تدعم منصة صوت تشغيل نماذج اللغة الكبيرة محليًا باستخدام Ollama.
+
+يمكن تجربة نماذج مختلفة لتقييم جودة الإجابات وسرعة الاستدلال.
+
+| النموذج | معرف النموذج في Ollama |
 |---|---|
 | Qwen 2.5 | `qwen2.5:3b` |
 | Llama 3.1 | `llama3.1:8b` |
 | Gemma 3 | `gemma3:4b` |
 | Aya Expanse | `aya-expanse:8b` |
 
-The default model is Qwen 2.5 3B.
+النموذج الافتراضي هو Qwen 2.5 3B.
 
-To use Llama instead:
+### استخدام نموذج Llama
+
+</div>
 
 ```bash
 ollama pull llama3.1:8b
 SAWT_LLM=llama3.1:8b bash start.sh
 ```
 
-To use Gemma:
+<div dir="rtl">
+
+### استخدام نموذج Gemma
+
+</div>
 
 ```bash
 ollama pull gemma3:4b
 SAWT_LLM=gemma3:4b bash start.sh
 ```
 
-These commands require the backend version that supports the `SAWT_LLM` environment variable.
+<div dir="rtl">
 
-Alternative models may require additional memory and have not been fully evaluated on the Sawt dataset. Arabic generation quality may vary between models.
+تتطلب هذه الأوامر استخدام إصدار الواجهة الخلفية الذي يدعم متغير البيئة `SAWT_LLM`.
 
-Changing the generative model does not require retraining the sentiment classifier, regenerating embeddings, or rebuilding the FAISS index.
+قد تتطلب النماذج البديلة موارد إضافية، ولم تُقيّم جميعها بصورة كاملة على بيانات صوت. كما قد تختلف جودة توليد النصوص العربية من نموذج إلى آخر.
 
-Existing cached topic names remain unchanged until regenerated.
+لا يتطلب تغيير نموذج اللغة إعادة تدريب نموذج تحليل المشاعر، أو إعادة توليد المتجهات، أو إعادة بناء فهرس FAISS.
+
+تبقى أسماء الموضوعات المحفوظة دون تغيير إلى أن يُعاد توليدها.
+
+</div>
 
 ---
 
-### Verify the Installation
+## التحقق من سلامة التشغيل
 
-Once the backend is running, use the following commands to verify the main application services.
+<div dir="rtl">
 
-#### System Health
+بعد تشغيل الواجهة الخلفية، يمكن استخدام الأوامر التالية للتحقق من عمل الخدمات الرئيسية.
+
+### التحقق من حالة النظام
+
+</div>
 
 ```bash
 curl http://127.0.0.1:8000/api/health
 ```
 
-#### Review Retrieval
+<div dir="rtl">
+
+### التحقق من استرجاع المراجعات
+
+</div>
 
 ```bash
 curl "http://127.0.0.1:8000/api/reviews?q=&offset=0&limit=15"
 ```
 
-#### Semantic Search
+<div dir="rtl">
+
+### اختبار البحث الدلالي
+
+</div>
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/search \
@@ -449,7 +591,11 @@ curl -X POST http://127.0.0.1:8000/api/search \
     -d '{"text":"جودة المنتج","rerank":true}'
 ```
 
-#### Retrieval-Augmented Generation
+<div dir="rtl">
+
+### اختبار التوليد المعزز بالاسترجاع
+
+</div>
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/chat \
@@ -457,80 +603,106 @@ curl -X POST http://127.0.0.1:8000/api/chat \
     -d '{"text":"ما هي أبرز شكاوى العملاء؟","rerank":true}'
 ```
 
-A successful health response confirms artifact availability. The search and chat tests verify that inference services are functioning.
+<div dir="rtl">
+
+تؤكد الاستجابة الناجحة لخدمة حالة النظام توفر الملفات المطلوبة، بينما تساعد اختبارات البحث والمحادثة على التحقق من عمل خدمات الاستدلال.
+
+</div>
 
 ---
 
-### Troubleshooting
+## معالجة المشكلات الشائعة
 
-| Issue | Recommended Solution |
+<div dir="rtl">
+
+| المشكلة | الحل المقترح |
 |---|---|
-| Missing artifact | Verify the contents of `data/processed/` and `models/` |
-| Ollama connection error | Confirm Ollama is running on port 11434 |
-| Language model not found | Download the selected model using `ollama pull` |
-| Python dependency conflict | Use Python 3.12 and the supplied requirements file |
-| Segmentation fault | Apply thread limits, avoid mixing Conda and virtual environments, and investigate CPU-only inference |
-| Frontend dependency error | Run `npm install` inside `frontend/` |
-| Backend connection error | Confirm FastAPI is running on port 8000 |
-| Slow first request | Allow time for model downloading and initialization |
-| Port already in use | Stop the existing service using the same port |
+| Missing Artifact | التحقق من توفر الملفات المطلوبة داخل `data/processed/` و`models/` |
+| تعذر الاتصال بـ Ollama | التأكد من تشغيل الخدمة على المنفذ 11434 |
+| عدم توفر نموذج اللغة | تحميل النموذج باستخدام `ollama pull` |
+| تعارض مكتبات Python | استخدام Python 3.12 والإصدارات المحددة في ملف المتطلبات |
+| Segmentation Fault | تطبيق إعدادات تحديد عدد Threads، وعدم خلط Conda مع البيئة الافتراضية، وفحص إمكانية استخدام CPU فقط |
+| مشكلة في الواجهة الأمامية | تنفيذ `npm install` داخل مجلد `frontend/` |
+| تعذر الاتصال بالواجهة الخلفية | التأكد من تشغيل FastAPI على المنفذ 8000 |
+| بطء أول عملية استدلال | الانتظار حتى اكتمال تحميل النماذج وتهيئتها |
+| المنفذ مستخدم مسبقًا | إيقاف الخدمة الأخرى التي تستخدم المنفذ نفسه |
 
-Native inference crashes may require additional platform-specific troubleshooting. Thread limits are a mitigation rather than a guaranteed fix.
+قد تتطلب بعض أخطاء المكتبات الأصلية معالجة إضافية بحسب نظام التشغيل والجهاز المستخدم. إعدادات تحديد عدد Threads إجراء لتقليل احتمالية حدوث المشكلة، وليست حلًا مضمونًا لجميع الحالات.
 
-### Stop and Restart
+### إيقاف المنصة وإعادة تشغيلها
 
-Press `Ctrl+C` in the running service terminals to stop the application.
+لإيقاف الخدمات، اضغط `Ctrl+C` داخل نوافذ Terminal التي تعمل فيها الخدمات.
 
-To restart Sawt later, ensure Ollama is running and execute:
+لإعادة تشغيل المنصة لاحقًا، تأكد من تشغيل Ollama ثم نفّذ:
+
+</div>
 
 ```bash
 bash start.sh
 ```
 
-There is no need to reinstall dependencies, rerun notebooks, or retrain models during normal restarts.
+<div dir="rtl">
+
+لا يلزم إعادة تثبيت المكتبات أو تشغيل دفاتر Jupyter أو إعادة تدريب النماذج عند كل عملية تشغيل.
+
+</div>
 
 ---
 
-## API Reference
+## واجهات برمجة التطبيقات
 
-| Method | Endpoint | Purpose |
+<div dir="rtl">
+
+توفر الواجهة الخلفية مجموعة من واجهات API لدعم خصائص المنصة.
+
+| الطريقة | المسار | الوصف |
 |---|---|---|
-| GET | `/api/health` | Artifact and model availability |
-| GET | `/api/overview` | Corpus summary |
-| GET | `/api/universe` | PCA points and semantic topics |
-| GET | `/api/reviews` | Paginated review search |
-| GET | `/api/entities` | Named entity summaries |
-| GET | `/api/metrics` | Available evaluation exports |
-| POST | `/api/analyze` | Sentiment inference |
-| POST | `/api/search` | Semantic retrieval |
-| POST | `/api/chat` | Evidence-grounded answers |
-| POST | `/api/topic-names` | Generate descriptive topic names |
+| GET | `/api/health` | التحقق من توفر الملفات والنماذج |
+| GET | `/api/overview` | عرض الإحصائيات العامة للبيانات |
+| GET | `/api/universe` | عرض نقاط التمثيل البصري والموضوعات الدلالية |
+| GET | `/api/reviews` | استرجاع المراجعات والبحث فيها |
+| GET | `/api/entities` | عرض ملخصات الكيانات المسماة |
+| GET | `/api/metrics` | استرجاع نتائج تقييم النماذج |
+| POST | `/api/analyze` | تحليل المشاعر للنصوص المدخلة |
+| POST | `/api/search` | البحث الدلالي |
+| POST | `/api/chat` | توليد إجابات مستندة إلى الأدلة |
+| POST | `/api/topic-names` | توليد أسماء وصفية للموضوعات |
 
-Interactive API documentation is available at:
+يمكن استعراض واجهات API وتجربتها من خلال التوثيق التفاعلي:
 
-[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+[Swagger API Documentation](http://127.0.0.1:8000/docs)
 
----
-
-## Limitations
-
-- Binary sentiment classification does not explicitly capture neutral or mixed opinions.
-- Topic clusters are exploratory rather than verified semantic categories.
-- PCA is a lossy dimensionality reduction technique.
-- Retrieval and named entity recognition may cover subsets rather than the entire corpus.
-- Named entity recognition confidence scores do not represent measured accuracy.
-- Regex-based PII masking does not guarantee complete anonymization.
-- RAG responses may be incomplete or incorrect.
-- Corpus-wide conclusions should not be inferred exclusively from a small set of retrieved reviews.
-- Local inference speed depends on available hardware and model size.
-- The local development configuration is not a hardened production deployment.
-- Data and model redistribution require appropriate permissions and privacy review.
+</div>
 
 ---
 
-## References
+## القيود
 
-### Natural Language Processing and Machine Learning
+<div dir="rtl">
+
+على الرغم من إمكانيات المنصة، توجد مجموعة من القيود التي يجب أخذها بعين الاعتبار عند تفسير النتائج:
+
+- يعتمد تحليل المشاعر على التصنيف الثنائي، ولا يتضمن تصنيفًا مستقلًا للمشاعر المحايدة أو المختلطة.
+- الموضوعات المكتشفة باستخدام التجميع الدلالي استكشافية، وليست تصنيفات معتمدة أو محددة مسبقًا.
+- يؤدي تقليل الأبعاد باستخدام PCA إلى فقدان جزء من المعلومات الموجودة في التمثيلات الأصلية.
+- قد تُطبق بعض عمليات البحث والتعرف على الكيانات على عينات من البيانات بدلًا من كامل مجموعة البيانات.
+- لا تمثل درجات الثقة في التعرف على الكيانات المسماة قياسًا مباشرًا لدقة النموذج.
+- لا تضمن عملية إخفاء المعلومات الشخصية باستخدام التعبيرات النمطية إزالة جميع المعلومات الحساسة.
+- قد ينتج نموذج اللغة إجابات غير مكتملة أو غير دقيقة.
+- لا ينبغي تعميم النتائج المستندة إلى عدد محدود من المراجعات المسترجعة على كامل مجموعة البيانات.
+- تعتمد سرعة الاستدلال المحلي على إمكانيات الجهاز وحجم النموذج المستخدم.
+- إعدادات التشغيل الحالية مخصصة للتطوير والتجارب المحلية، وليست بيئة إنتاج مؤمنة بالكامل.
+- يجب التحقق من حقوق استخدام البيانات والنماذج ومتطلبات الخصوصية قبل إعادة توزيعها.
+
+</div>
+
+---
+
+## المراجع
+
+<div dir="rtl">
+
+### معالجة اللغة الطبيعية وتعلم الآلة
 
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers/)
 - [Sentence Transformers](https://www.sbert.net/)
@@ -538,7 +710,7 @@ Interactive API documentation is available at:
 - [PyTorch](https://pytorch.org/)
 - [FAISS](https://github.com/facebookresearch/faiss)
 
-### Pretrained Models
+### النماذج المدربة مسبقًا
 
 - [Multilingual DistilBERT](https://huggingface.co/distilbert/distilbert-base-multilingual-cased)
 - [Multilingual XLM-R NER](https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl)
@@ -546,7 +718,7 @@ Interactive API documentation is available at:
 - [Multilingual Cross-Encoder](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1)
 - [Qwen 2.5](https://ollama.com/library/qwen2.5)
 
-### Application Development
+### تطوير التطبيقات
 
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [React](https://react.dev/)
@@ -556,13 +728,15 @@ Interactive API documentation is available at:
 - [Recharts](https://recharts.org/)
 - [Ollama](https://docs.ollama.com/)
 
+</div>
+
 ---
 
 <div align="center">
 
-<img src="docs/banner.svg" alt="Sawt — A universe of voices" width="65%" />
+<img src="docs/banner.svg" alt="صوت — لكل صوت حكاية" width="65%" />
 
-**Sawt · لكل صوت حكاية**
+**صوت · لكل صوت حكاية**
 
 A universe of voices.
 
