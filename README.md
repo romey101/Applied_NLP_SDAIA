@@ -5,7 +5,7 @@
 
 # صوت | Sawt
 
-**منصة ذكية ثنائية اللغة لتحليل وفهم آراء العملاء باستخدام تقنيات معالجة اللغة الطبيعية المقدمة من اكاديميو هدايا @SDAIAACADEMY .**
+**منصة ذكية ثنائية اللغة لتحليل وفهم آراء العملاء باستخدام تقنيات معالجة اللغة الطبيعية المقدمة من اكاديمية سدايا @SDAIAACADEMY .**
 
 ![Python](https://img.shields.io/badge/Python-3.12-542438?style=flat-square)
 ![React](https://img.shields.io/badge/React-TypeScript-ECA58C?style=flat-square)
