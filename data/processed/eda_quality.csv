@@ -1,0 +1,8 @@
+metric,count
+rows,330000
+missing_content,0
+missing_label,0
+invalid_label,0
+empty_text,0
+duplicate_content,32
+exact_duplicates,32
